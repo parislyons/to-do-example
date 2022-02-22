@@ -15,11 +15,6 @@ pipeline {
     //     sh "bash test.sh"
     //   }
     // }
-    stage('Test') {
-      steps {
-        sh "bash test.sh"
-      }
-    }
     stage('Run') {
       steps {
           script {
@@ -27,7 +22,6 @@ pipeline {
                   sh "python3 app.py"
               }
           }
-        sh "bash test.sh"
       }
     }
 
