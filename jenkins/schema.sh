@@ -1,4 +1,8 @@
 #!/bin/bash
 
 source .venv/bin/activate
-python3 create.py
+
+if [ ! -f application/*.db ]
+  then python3 create.py
+  echo "Successfully created database"
+fi
