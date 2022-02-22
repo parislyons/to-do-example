@@ -1,7 +1,5 @@
 #!/bin/bash
 
-./install.sh
-echo "Successfully installed packages"
 source .venv/bin/activate
 
 if [ ! -f application/*.db ]

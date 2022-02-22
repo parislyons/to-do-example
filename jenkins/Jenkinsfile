@@ -1,12 +1,36 @@
 pipeline {
   agent any
+  environment {
+      RUN_APP = "false"
+      DATABASE_URI = credentials("DATABASE_URI")
+  }
   stages {
     stage('Setup') {
       steps {
-        sh "mkdir newdir"
-        sh "cd newdir"
-        sh "touch newfile"
+        sh "bash install.sh"
       }
     }
+    // stage('Test') {
+    //   steps {
+    //     sh "bash test.sh"
+    //   }
+    // }
+    stage('Test') {
+      steps {
+        sh "bash test.sh"
+      }
+    }
+    stage('Run') {
+      steps {
+          script {
+              if (env.RUN_APP == "true") {
+                  sh "python3 app.py"
+              }
+          }
+        sh "bash test.sh"
+      }
+    }
+
+
   }
 }
